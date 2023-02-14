@@ -1,0 +1,36 @@
+
+Generic (System.Collections.Generic)
+
+List - a sequantial, dynamic list of data item (generic)
+Dictionary<TKey,TValue> Generic version of hashtables
+LinkedList<T> doubly linked list
+List<T> generic version of ArrayList
+Queue<T>
+SortedDictionary<TKey, TValue>
+SortedSet<T> Contains only a list of sorted items, Removes duplicates
+Stack<T> 
+
+Interfaces
+ICollection<T>, IComparer<T>, IDictionary<TKey, TValue>, IEnumerable<T>, IEnumerator<T>, IList<T>, ISet<T> 
+
+
+
+Non-Generic (System.Collections)
+Dis
+Overhead operation due to boxing and unboxing
+Not fully typesafe
+
+
+ArrayList
+BitArray
+Hashtable
+Stack
+SortedList - a list of key-values, sorted by keys. Key must be unique. Simply, they are a sorted version of hashtables
+
+Interfaces
+ICollection, ICloneable, IDictionary, IEnumerable, IEnumerator, IList
+
+
+Specialized (System.Collections.Specialized)
+HybridDictionary, ListDictionary, StringCollection, BitVector32
+

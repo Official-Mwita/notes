@@ -1,0 +1,169 @@
+C- sharp documentantion
+
+Sample operator overloading
+// Overloaded operator +.
+public static Point operator + (Point p1, Point p2) => new Point(p1.X + p2.X, p1.Y + p2.Y);
+
+it must be static method with syntax
+
+public static DefinedType operator sign (DefinedType 1, DefinedType 2) return DefinedType 3
+
+During implicit and explicit overloading. an explicitly overloaded explicit operator can have another definitation of implicit operator overloading. When implicit operator is overloaded, an explicit or implicit calling can be used interchangebly see example below
+
+//Defination
+public static implicit operator int(Point p) => return P.X;
+
+//Calling
+int x = p;
+or 
+int x = (int)p //Not neccessary
+
+This type of overloading is excellently suited for struct objects though normally object can be handled as well. In short let your logic match a natural environment
+
+Samples
+//Main calls
+// See https://aka.ms/new-console-template for more information
+
+
+
+using AlwaysTestDotCom;
+
+Point a, b, c;
+
+a= new Point() { Y=3, X=4 };
+b = new Point() { Y=5, X=6 };
+
+c = a * b;
+
+//Converting 2D to 3D object
+ThreeDPoint dPoint = (ThreeDPoint)c;
+
+Console.WriteLine($"{a} * {b} is {c} which C");
+
+Console.WriteLine($"A conversion of C to 3D {dPoint}");
+
+int x = (int) a + (int) b;
+Console.WriteLine($"adding a and b {x}");
+
+Point d = (Point)10;
+
+Console.WriteLine($"Creating a point from 10 we get {d}");
+
+
+//Point
+
+
+using System.Data.Common;
+
+namespace AlwaysTestDotCom
+{
+    internal class Point : IComparable<Point>
+    {
+        
+        public int Y { get; set; }
+
+        public int X { get; set; }
+
+        public static Point operator * (Point p1, Point p2)
+        {
+            Point pointp = new Point ();
+
+            pointp.X = p1.X * p2.X;
+            pointp.Y = p1.Y * p2.Y;
+
+            return pointp;
+        }
+
+        public static bool operator ==(Point p1, Point p2)
+        {
+            return p1.Equals (p2);
+        }
+
+        public static bool operator !=(Point p1, Point p2)
+        {
+            return !(p1.Equals(p2));
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if(obj is Point p)
+            {
+                return p.X == X && p.Y == Y;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"({X}, {Y})";
+        }
+
+        public int CompareTo(Point? other)
+        {
+            if (other == null)
+                return 0 ;
+
+            if (X > other.X && Y > other.Y)
+                return 1;
+            if (X < other.X && Y < other.Y)
+                return -1;
+
+            return 0;
+        }
+
+
+        //Explicit conversion of a point to int and vice versa
+        public static explicit operator Point(int value)
+        {
+            Point p = new Point { X = value, Y = 0 };
+
+            return p;
+
+        }
+
+        //Point to int
+       public static explicit operator int(Point p)
+        {
+            return p.X;
+        }
+    }
+}
+
+
+//ThreeDPoint
+
+
+using System.Security.Cryptography.X509Certificates;
+
+namespace AlwaysTestDotCom
+{
+    internal class ThreeDPoint
+    {
+        public int Y { get; set; }
+
+        public int X { get; set; }
+
+        public int Z { get; set; }
+
+
+        public override string ToString()
+        {
+            return $"({X}, {Y}, {Z})";
+        }
+
+        //Explicit conversion of a 2D point to a three D point
+
+        public static explicit operator ThreeDPoint(Point point)
+        {
+            ThreeDPoint _3d = new ThreeDPoint { X = point.X, Y = point.Y, Z = point.X };
+
+            return _3d;
+        }
+    }
+
+
+}
